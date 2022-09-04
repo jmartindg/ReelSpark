@@ -1,0 +1,52 @@
+/* Google Font - Roboto - 300, 400, 500, 700, 900 */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* Custome Styles */
+body {
+  @apply text-gray-50;
+}
+
+.nav-open {
+  @apply fixed left-0 top-0 h-screen w-[75%] bg-[#131213] p-6 duration-150 ease-in sm:w-[60%] md:w-[45%];
+}
+
+.nav-close {
+  @apply fixed left-[-100%] top-0 p-6 duration-150 ease-in;
+}
+
+.hero-container {
+  @apply relative flex min-h-[40vh] flex-col justify-center bg-cover bg-top bg-no-repeat px-4 md:min-h-[50vh] lg:min-h-[65vh] xl:min-h-[75vh];
+}
+
+.hero-text {
+  @apply mx-auto text-center text-xl font-bold text-gray-50 md:w-4/6 lg:mx-0 lg:w-2/4 lg:text-left lg:text-3xl;
+}
+
+.hero-cta {
+  @apply mt-3 inline-block rounded bg-yellow-500 px-5 py-2 font-medium text-zinc-900 transition hover:bg-yellow-400 md:mt-5 md:px-7 md:py-3;
+}
+
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+  @apply rounded bg-yellow-500 p-1 px-2 text-lg font-bold text-zinc-900 md:p-2 md:text-2xl;
+}
+
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+  @apply rounded bg-yellow-500 p-1 px-2 text-lg font-bold text-zinc-900 md:p-2 md:text-2xl;
+}
+
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Roboto", sans-serif;
+  }
+
+  body {
+    background-color: #010001;
+  }
+}
