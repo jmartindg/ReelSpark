@@ -3,8 +3,16 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import Title from "../components/Title";
-import Loader from "../components/Loader";
+import Loader from "../components/placeholders/Loader";
 import Card from "../components/cards/Card";
+
+interface TvProps {
+  id: number;
+  name: string;
+  poster_path: string;
+  first_air_date: string;
+  vote_average: number;
+}
 
 const getPopularTvShows = async (page: number) => {
   const res = await axios.get(
@@ -57,7 +65,7 @@ const TVShows = () => {
         <>
           <section className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:grid-cols-5">
             {status === "success" &&
-              data.map((tv: any) => (
+              data.map((tv: TvProps) => (
                 <Card
                   key={tv.id}
                   id={tv.id}

@@ -1,9 +1,8 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const apiLink: string = "https://developers.themoviedb.org/3/getting-started/introduction";
-  const githubLink: string = "";
+  const githubLink: string = "https://github.com/jmartindg/Reelspark-v2";
 
   return (
     <footer className="bg-[#131213]">
