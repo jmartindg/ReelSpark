@@ -14,6 +14,7 @@ import ErrorPage from "./pages/ErrorPage";
 import MovieDetails from "./pages/movies/MovieDetails";
 import TvShowDetails from "./pages/tvShows/TvShowDetails";
 import Browse from "./pages/Browse";
+import ActorDetails from "./pages/actors/ActorDetails";
 
 // Initialize react-query
 const queryClient = new QueryClient();
@@ -32,6 +33,8 @@ const App = () => {
         <Route path="/tv-show-details/:id" element={<TvShowDetails />} />
         {/* Browse Page */}
         <Route path="/browse" element={<Browse />} />
+        {/* Actor Details Page */}
+        <Route path="/actor-details/:id" element={<ActorDetails />} />
         {/* 404 Page */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
