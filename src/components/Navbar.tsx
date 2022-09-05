@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
 import Logo from "./Logo";
@@ -49,9 +49,16 @@ const Navbar = () => {
         <ul className="hidden items-center space-x-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.id}>
-              <Link to={link.path} className="font-medium transition hover:text-yellow-400">
+              <NavLink
+                to={link.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? "font-medium text-yellow-500 underline underline-offset-8"
+                    : "font-medium transition hover:text-yellow-400"
+                }
+              >
                 {link.name}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -67,7 +74,7 @@ const Navbar = () => {
         <nav className={isOpen ? "nav-open" : "nav-close"}>
           <div className="flex items-center justify-between">
             <Link to="/" className="font-bold uppercase">
-              Reelspark
+              <Logo />
             </Link>
             <button aria-label="Close" onClick={handleIsOpen} className="cursor-pointer">
               <MdClose size={18} />
@@ -76,9 +83,17 @@ const Navbar = () => {
           <ul className="my-12 space-y-8">
             {navLinks.map((link) => (
               <li key={link.id}>
-                <Link to={link.path} onClick={handleIsOpen} className="text-sm font-medium transition hover:text-yellow-400">
+                <NavLink
+                  to={link.path}
+                  onClick={handleIsOpen}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-sm font-medium text-yellow-500 underline underline-offset-8"
+                      : "text-sm font-medium transition hover:text-yellow-400"
+                  }
+                >
                   {link.name}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>

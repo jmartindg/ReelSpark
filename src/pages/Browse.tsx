@@ -60,7 +60,7 @@ const Browse = () => {
 
   return (
     <section className="container min-h-screen px-4 py-10">
-      <header className="mb-6 flex flex-col justify-between md:flex-row md:items-center">
+      <header className="mb-6 flex flex-col justify-between space-y-3 md:flex-row md:items-center md:space-y-0">
         <Title title="Browse" />
         <SearchBar submit={submit} searchValue={searchValue} handleChange={handleChange} />
       </header>
