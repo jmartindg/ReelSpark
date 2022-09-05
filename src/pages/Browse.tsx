@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Title from "../components/Title";
-import Loader from "../components/placeholders/Loader";
 import StartSearching from "../components/placeholders/StartSearching";
-// import ErrorMessage from "../components/placeholders/ErrorMessage";
 import SearchBar from "../components/SearchBar";
 import BrowseCard from "../components/cards/BrowseCard";
 
@@ -37,7 +35,7 @@ const multiSearch = async (searchValue: string) => {
 
 const Browse = () => {
   const [searchValue, setSearchValue] = useState<string>("");
-  const { data, status } = useQuery(["search", searchValue], () => multiSearch(searchValue), {
+  const { data, status, fetchStatus } = useQuery(["search", searchValue], () => multiSearch(searchValue), {
     refetchOnWindowFocus: false,
     enabled: searchValue.length > 3 || searchValue.length === 3,
   });
@@ -61,28 +59,33 @@ const Browse = () => {
   }, []);
 
   return (
-    <section className="container px-4 py-10">
+    <section className="container min-h-screen px-4 py-10">
       <header className="mb-6 flex flex-col justify-between md:flex-row md:items-center">
         <Title title="Browse" />
         <SearchBar submit={submit} searchValue={searchValue} handleChange={handleChange} />
       </header>
 
-      {status === "success" && (
-        <section className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:grid-cols-5">
-          {data.map((result: BrowseCardProps) => (
-            <BrowseCard
-              key={result.id}
-              id={result.id}
-              title={result.name || result.title}
-              date={result.first_air_date || result.release_date}
-              poster={result.poster_path || result.profile_path}
-              rating={result.vote_average}
-              media={result.media_type}
-              known={result.known_for_department}
-            />
-          ))}
-        </section>
-      )}
+      {searchValue.length < 3 && fetchStatus === "idle" && <StartSearching />}
+
+      {status === "success" &&
+        (data.length === 0 ? (
+          <StartSearching />
+        ) : (
+          <section className="grid grid-cols-2 gap-5 md:grid-cols-4 lg:grid-cols-5">
+            {data.map((result: BrowseCardProps) => (
+              <BrowseCard
+                key={result.id}
+                id={result.id}
+                title={result.name || result.title}
+                date={result.first_air_date || result.release_date}
+                poster={result.poster_path || result.profile_path}
+                rating={result.vote_average}
+                media={result.media_type}
+                known={result.known_for_department}
+              />
+            ))}
+          </section>
+        ))}
     </section>
   );
 };
