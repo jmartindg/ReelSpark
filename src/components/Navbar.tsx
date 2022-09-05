@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { MdClose } from "react-icons/md";
+import Logo from "./Logo";
 
 type NavbarProps = {
   id: number;
@@ -42,8 +43,8 @@ const Navbar = () => {
   return (
     <header className="relative z-[999] bg-[#131213] text-gray-50">
       <nav className="container flex items-center justify-between py-5 px-4">
-        <Link to="/" className="font-bold uppercase">
-          Reelspark
+        <Link to="/">
+          <Logo />
         </Link>
         <ul className="hidden items-center space-x-8 md:flex">
           {navLinks.map((link) => (
