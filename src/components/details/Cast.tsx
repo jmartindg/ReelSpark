@@ -52,8 +52,7 @@ const Cast = ({ type }: Type) => {
           slidesPerView={7}
           modules={[Navigation, A11y]}
           navigation
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          watchSlidesProgress
           breakpoints={{
             // when window width is >= 120px
             120: {

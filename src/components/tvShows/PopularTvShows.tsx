@@ -35,6 +35,7 @@ const PopularTvShows = () => {
             slidesPerView={5}
             modules={[Navigation, A11y]}
             navigation
+            watchSlidesProgress
             breakpoints={{
               // when window width is >= 120px
               120: {

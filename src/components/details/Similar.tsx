@@ -49,8 +49,7 @@ const Similar = ({ type, showPath }: Type) => {
           slidesPerView={5}
           modules={[Navigation, A11y]}
           navigation
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
+          watchSlidesProgress
           breakpoints={{
             // when window width is >= 120px
             120: {
