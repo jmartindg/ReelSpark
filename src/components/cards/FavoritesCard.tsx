@@ -1,29 +1,26 @@
 import supabase from "../../config/supabase";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { IoMdAdd } from "react-icons/io";
+import { IoMdClose } from "react-icons/io";
 import NoImage from "../../assets/no-img.jpg";
 
-interface CardProps {
+interface FavoritesCardProps {
   id: number;
   title: string;
   date: string;
   poster: string;
   rating: number | string;
-  path: string;
+  onDelete: (id: number) => void;
 }
 
-const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
-  const handleAddFavorites = async (e: any) => {
+const FavoritesCard = ({ id, title, date, poster, rating, onDelete }: FavoritesCardProps) => {
+  const handleDeleteFavorites = async (e: any) => {
     e.preventDefault();
 
-    const { data, error } = await supabase
-      .from("favorites")
-      .insert([{ title: title, rating: rating, poster_url: poster, date_released: date }]);
+    const { data, error } = await supabase.from("favorites").delete().eq("id", id).select("*");
 
     if (error) {
-      toast.error(`${title} is already in favorites`, {
+      toast.error(`Error removing ${title} from favorites`, {
         style: {
           borderRadius: "5px",
           background: "#333",
@@ -33,7 +30,8 @@ const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
     }
 
     if (data) {
-      toast.success(`${title} has been added to favorites`, {
+      onDelete(id);
+      toast.success(`${title} has been removed from favorites`, {
         style: {
           borderRadius: "5px",
           background: "#333",
@@ -59,30 +57,22 @@ const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
 
   return (
     <article className="overflow-hidden rounded bg-[#1A1A1A]">
-      <Link to={`/${path}/${id}`}>
-        {poster ? (
-          <img src={imgUrl + poster} className="aspect-[10/14] cursor-pointer transition hover:opacity-60" alt={title} />
-        ) : (
-          <img
-            src={NoImage}
-            className="aspect-[10/14] cursor-pointer object-cover transition hover:opacity-60"
-            alt={title}
-          />
-        )}
-      </Link>
+      {poster ? (
+        <img src={imgUrl + poster} className="aspect-[10/14]" alt={title} />
+      ) : (
+        <img src={NoImage} className="aspect-[10/14] object-cover" alt={title} />
+      )}
       <section className="py-4 px-3">
         <div className="flex items-center pb-1">
           <AiFillStar size={18} className="mr-1 text-yellow-500" />{" "}
           <span className="truncate text-sm text-gray-300 md:text-base">{Number(rating).toFixed(1)}</span>
         </div>
-        <Link to={`/${path}/${id}`}>
-          <h3 className="truncate font-medium hover:underline">{title}</h3>
-        </Link>
+        <h3 className="truncate font-medium">{title}</h3>
         <span className="text-sm font-light">{formattedDate(date)}</span>
         <div className="mt-2 w-full">
-          <button onClick={handleAddFavorites} className="add-btn">
-            <IoMdAdd className="mr-1" size={16} />
-            Favorite
+          <button onClick={handleDeleteFavorites} className="remove-btn">
+            <IoMdClose className="mr-1" size={16} />
+            Remove
           </button>
         </div>
       </section>
@@ -90,4 +80,4 @@ const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
   );
 };
 
-export default Card;
+export default FavoritesCard;

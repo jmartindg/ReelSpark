@@ -38,6 +38,11 @@ const Navbar = () => {
       name: "TV Shows",
       path: "/tv-shows",
     },
+    {
+      id: 5,
+      name: "Favorites",
+      path: "/favorites",
+    },
   ];
 
   return (
