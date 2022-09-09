@@ -109,8 +109,7 @@ const TvShowDetails = () => {
                 {fullFormattedDate(data.first_air_date)} &bull;{" "}
                 {data.genres.map((genre: Metadata, index: number) => (
                   <span key={genre.id}>{(index ? ", " : "") + genre.name}</span>
-                ))}{" "}
-                &bull; <span>{minuteToHours(data.runtime)}</span>
+                ))}
               </p>
 
               {/* Movie rating */}

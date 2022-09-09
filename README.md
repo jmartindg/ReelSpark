@@ -9,6 +9,7 @@ Movie and TV Shows Database Website. Click [here](https://reelspark.vercel.app/)
 - React Router
 - React Query v4
 - React Icons
+- React Hot Toast
 - Swiper
 - TailwindCSS
 - Axios
