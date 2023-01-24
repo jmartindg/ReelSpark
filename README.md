@@ -9,12 +9,10 @@ Movie and TV Shows Database Website. Click [here](https://reelspark.vercel.app/)
 - React Router
 - React Query v4
 - React Icons
-- React Hot Toast
 - Swiper
 - TailwindCSS
 - Axios
 - Vite
-- Supabase
 
 ## Features
 
@@ -25,7 +23,6 @@ Movie and TV Shows Database Website. Click [here](https://reelspark.vercel.app/)
 - View upcoming and now playing movies
 - View top rated and airing tv shows
 - Mobile responsive
-- Add movies and tv shows to favorites
 
 ## Deployment
 

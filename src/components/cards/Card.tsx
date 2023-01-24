@@ -1,8 +1,5 @@
-import supabase from "../../config/supabase";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { IoMdAdd } from "react-icons/io";
+import { Link } from "react-router-dom";
 import NoImage from "../../assets/no-img.jpg";
 
 interface CardProps {
@@ -15,34 +12,6 @@ interface CardProps {
 }
 
 const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
-  const handleAddFavorites = async (e: any) => {
-    e.preventDefault();
-
-    const { data, error } = await supabase
-      .from("favorites")
-      .insert([{ title: title, rating: rating, poster_url: poster, date_released: date }]);
-
-    if (error) {
-      toast.error(`${title} is already in favorites`, {
-        style: {
-          borderRadius: "5px",
-          background: "#333",
-          color: "#fff",
-        },
-      });
-    }
-
-    if (data) {
-      toast.success(`${title} has been added to favorites`, {
-        style: {
-          borderRadius: "5px",
-          background: "#333",
-          color: "#fff",
-        },
-      });
-    }
-  };
-
   const imgUrl = "https://image.tmdb.org/t/p/original/";
 
   if (rating === 0) {
@@ -79,12 +48,6 @@ const Card = ({ id, title, date, poster, rating, path }: CardProps) => {
           <h3 className="truncate font-medium hover:underline">{title}</h3>
         </Link>
         <span className="text-sm font-light">{formattedDate(date)}</span>
-        <div className="mt-2 w-full">
-          <button onClick={handleAddFavorites} className="add-btn">
-            <IoMdAdd className="mr-1" size={16} />
-            Favorite
-          </button>
-        </div>
       </section>
     </article>
   );
